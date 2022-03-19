@@ -19,6 +19,25 @@ namespace DiscountNotifierAPI.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            var seedData = SeedData.SeedData.GetData();
+
+            foreach(var manufacturer in seedData.Manufacturers)
+            {
+                modelBuilder.Entity<Manufacturer>().HasData(manufacturer);
+            }
+            foreach(var beacon in seedData.Beacons)
+            {
+                modelBuilder.Entity<Beacon>().HasData(beacon);
+            }
+            foreach(var region in seedData.Regions)
+            {
+                modelBuilder.Entity<Region>().HasData(region);
+            }
+            foreach(var discount in seedData.Discounts)
+            {
+                modelBuilder.Entity<Discount>().HasData(discount);
+            }
         }
     }
 }

@@ -63,21 +63,21 @@ namespace DiscountNotifierAPI.Controllers
         }
 
         /// <summary>
-        /// This API endpoint is used by the user to get list of discounts available for a particular region
+        /// This API endpoint is used by the user to get list of discounts available for a particular beacon region
         /// </summary>
-        /// <param name="regionId"></param>
+        /// <param name="beaconId"></param>
         /// <returns>List of discounts</returns>
         [HttpGet]
-        [Route("routerId:{int}")]
-        public async Task<ActionResult>GetDiscounts(int regionId)
+        [Route("beaconId:{int}")]
+        public async Task<ActionResult>GetDiscounts(int beaconId)
         {
             try
             {
-                return Ok(await _discountRepository.GetDiscountsByRegion(regionId));
+                return Ok(await _discountRepository.GetDiscountsByBeacon(beaconId));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving discounts for region id:{regionId}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving discounts for beacon id: {beaconId}");
             }
         }
     }
