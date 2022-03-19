@@ -23,20 +23,25 @@ namespace DiscountNotifierAPI.Repositories
         }
         public async Task<Discount> GetDiscount(int discountId)
         {
-            return await _appDbContext.Discounts.FirstOrDefaultAsync(d => d.Id == discountId);
+            return await _appDbContext.Discounts
+                                .Include(d => d.AssociatedBeacon.AssociatedRegion)
+                                .FirstOrDefaultAsync(d => d.Id == discountId);
         }
 
         public async Task<IEnumerable<Discount>> GetDiscounts()
         {
-            return await _appDbContext.Discounts.ToListAsync();
+            return await _appDbContext.Discounts
+                                .Include(d => d.AssociatedBeacon.AssociatedRegion)
+                                .ToListAsync();
         }
 
         public async Task<IEnumerable<Discount>> GetDiscountsByBeacon(int beaconId)
         {
             return await _appDbContext.Discounts
-                    .Where(d => d.BeaconId == beaconId)
-                    .Include(d => d.AssociatedBeacon.Manufacturer)
-                    .ToListAsync();
+                                    .Where(d => d.BeaconId == beaconId)
+                                    .Include(d => d.AssociatedBeacon.AssociatedRegion)
+                                    .Include(d => d.AssociatedBeacon.Manufacturer)
+                                    .ToListAsync();
         }
     }
 }

@@ -20,12 +20,26 @@ namespace DiscountNotifierAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Regions",
+                columns: table => new
+                {
+                    RegionId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RegionName = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Regions", x => x.RegionId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Beacons",
                 columns: table => new
                 {
                     BeaconId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ManufacturerId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ManufacturerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    RegionId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,6 +49,12 @@ namespace DiscountNotifierAPI.Migrations
                         column: x => x.ManufacturerId,
                         principalTable: "Manufacturers",
                         principalColumn: "ManufacturerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Beacons_Regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "Regions",
+                        principalColumn: "RegionId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -55,26 +75,6 @@ namespace DiscountNotifierAPI.Migrations
                     table.PrimaryKey("PK_Discounts", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Discounts_Beacons_BeaconId",
-                        column: x => x.BeaconId,
-                        principalTable: "Beacons",
-                        principalColumn: "BeaconId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Regions",
-                columns: table => new
-                {
-                    RegionId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    RegionName = table.Column<string>(type: "TEXT", nullable: true),
-                    BeaconId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Regions", x => x.RegionId);
-                    table.ForeignKey(
-                        name: "FK_Regions_Beacons_BeaconId",
                         column: x => x.BeaconId,
                         principalTable: "Beacons",
                         principalColumn: "BeaconId",
@@ -102,54 +102,89 @@ namespace DiscountNotifierAPI.Migrations
                 values: new object[] { 4, "UVW" });
 
             migrationBuilder.InsertData(
-                table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 3, 1 });
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 1, "Grocery" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 2, "Dairy" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 3, "Fresh Produce" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 4, "Life style" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 5, "Kitchen Appliances" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 6, "Kids' Wear" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 7, "Men's Wear" });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "RegionId", "RegionName" },
+                values: new object[] { 8, "Women's Wear" });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 4, 1 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 1, 2, 1 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 1, 2 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 2, 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 2, 2 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 3, 1, 3 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 5, 3 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 4, 1, 4 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 6, 3 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 5, 3, 5 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 7, 4 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 6, 3, 6 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
-                columns: new[] { "BeaconId", "ManufacturerId" },
-                values: new object[] { 8, 4 });
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 7, 4, 7 });
+
+            migrationBuilder.InsertData(
+                table: "Beacons",
+                columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
+                values: new object[] { 8, 4, 8 });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 5, 3, 2m, "", "Nectarines", "12" });
-
-            migrationBuilder.InsertData(
-                table: "Discounts",
-                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 16, 8, 3m, "", "US Weekly", "2" });
+                values: new object[] { 1, 1, 12m, "", "Pineapple", "6" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
@@ -184,7 +219,32 @@ namespace DiscountNotifierAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 17, 8, 12m, "", "Cococola", "13" });
+                values: new object[] { 9, 4, 8m, "", "Gastorade", "22" });
+
+            migrationBuilder.InsertData(
+                table: "Discounts",
+                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
+                values: new object[] { 16, 8, 3m, "", "US Weekly", "2" });
+
+            migrationBuilder.InsertData(
+                table: "Discounts",
+                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
+                values: new object[] { 8, 4, 4m, "", "Brach's Jelly beans", "20" });
+
+            migrationBuilder.InsertData(
+                table: "Discounts",
+                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
+                values: new object[] { 6, 3, 5m, "", "Fresh seedless whole watermelon", "11" });
+
+            migrationBuilder.InsertData(
+                table: "Discounts",
+                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
+                values: new object[] { 5, 3, 2m, "", "Nectarines", "12" });
+
+            migrationBuilder.InsertData(
+                table: "Discounts",
+                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
+                values: new object[] { 4, 2, 8m, "", "Spinach", "7" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
@@ -194,7 +254,7 @@ namespace DiscountNotifierAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 4, 2, 8m, "", "Spinach", "7" });
+                values: new object[] { 19, 1, 10m, "", "Head phones", "120" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
@@ -209,72 +269,12 @@ namespace DiscountNotifierAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 1, 1, 12m, "", "Pineapple", "6" });
-
-            migrationBuilder.InsertData(
-                table: "Discounts",
-                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 9, 4, 8m, "", "Gastorade", "22" });
-
-            migrationBuilder.InsertData(
-                table: "Discounts",
-                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 8, 4, 4m, "", "Brach's Jelly beans", "20" });
-
-            migrationBuilder.InsertData(
-                table: "Discounts",
-                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
                 values: new object[] { 7, 3, 7m, "", "Croissants", "12" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 6, 3, 5m, "", "Fresh seedless whole watermelon", "11" });
-
-            migrationBuilder.InsertData(
-                table: "Discounts",
-                columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 19, 1, 10m, "", "Head phones", "120" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 1, 1, "Grocery" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 2, 2, "Dairy" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 4, 4, "Life style" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 5, 5, "Kitchen Appliances" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 6, 6, "Kids Wear" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 3, 3, "Fresh Produce" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 7, 7, "Men's Wear" });
-
-            migrationBuilder.InsertData(
-                table: "Regions",
-                columns: new[] { "RegionId", "BeaconId", "RegionName" },
-                values: new object[] { 8, 8, "Women's Wear" });
+                values: new object[] { 17, 8, 12m, "", "Cococola", "13" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Beacons_ManufacturerId",
@@ -282,13 +282,13 @@ namespace DiscountNotifierAPI.Migrations
                 column: "ManufacturerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounts_BeaconId",
-                table: "Discounts",
-                column: "BeaconId");
+                name: "IX_Beacons_RegionId",
+                table: "Beacons",
+                column: "RegionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Regions_BeaconId",
-                table: "Regions",
+                name: "IX_Discounts_BeaconId",
+                table: "Discounts",
                 column: "BeaconId");
         }
 
@@ -298,13 +298,13 @@ namespace DiscountNotifierAPI.Migrations
                 name: "Discounts");
 
             migrationBuilder.DropTable(
-                name: "Regions");
-
-            migrationBuilder.DropTable(
                 name: "Beacons");
 
             migrationBuilder.DropTable(
                 name: "Manufacturers");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
         }
     }
 }

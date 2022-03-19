@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountNotifierAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220319080542_InitialCreate")]
+    [Migration("20220319093713_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,9 +26,14 @@ namespace DiscountNotifierAPI.Migrations
                     b.Property<int>("ManufacturerId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("RegionId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("BeaconId");
 
                     b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("RegionId");
 
                     b.ToTable("Beacons");
 
@@ -36,42 +41,50 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             BeaconId = 1,
-                            ManufacturerId = 2
+                            ManufacturerId = 2,
+                            RegionId = 1
                         },
                         new
                         {
                             BeaconId = 2,
-                            ManufacturerId = 2
+                            ManufacturerId = 2,
+                            RegionId = 2
                         },
                         new
                         {
                             BeaconId = 3,
-                            ManufacturerId = 1
+                            ManufacturerId = 1,
+                            RegionId = 3
                         },
                         new
                         {
                             BeaconId = 4,
-                            ManufacturerId = 1
+                            ManufacturerId = 1,
+                            RegionId = 4
                         },
                         new
                         {
                             BeaconId = 5,
-                            ManufacturerId = 3
+                            ManufacturerId = 3,
+                            RegionId = 5
                         },
                         new
                         {
                             BeaconId = 6,
-                            ManufacturerId = 3
+                            ManufacturerId = 3,
+                            RegionId = 6
                         },
                         new
                         {
                             BeaconId = 7,
-                            ManufacturerId = 4
+                            ManufacturerId = 4,
+                            RegionId = 7
                         },
                         new
                         {
                             BeaconId = 8,
-                            ManufacturerId = 4
+                            ManufacturerId = 4,
+                            RegionId = 8
                         });
                 });
 
@@ -318,15 +331,10 @@ namespace DiscountNotifierAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BeaconId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("RegionName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("RegionId");
-
-                    b.HasIndex("BeaconId");
 
                     b.ToTable("Regions");
 
@@ -334,49 +342,41 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             RegionId = 1,
-                            BeaconId = 1,
                             RegionName = "Grocery"
                         },
                         new
                         {
                             RegionId = 2,
-                            BeaconId = 2,
                             RegionName = "Dairy"
                         },
                         new
                         {
                             RegionId = 3,
-                            BeaconId = 3,
                             RegionName = "Fresh Produce"
                         },
                         new
                         {
                             RegionId = 4,
-                            BeaconId = 4,
                             RegionName = "Life style"
                         },
                         new
                         {
                             RegionId = 5,
-                            BeaconId = 5,
                             RegionName = "Kitchen Appliances"
                         },
                         new
                         {
                             RegionId = 6,
-                            BeaconId = 6,
-                            RegionName = "Kids Wear"
+                            RegionName = "Kids' Wear"
                         },
                         new
                         {
                             RegionId = 7,
-                            BeaconId = 7,
                             RegionName = "Men's Wear"
                         },
                         new
                         {
                             RegionId = 8,
-                            BeaconId = 8,
                             RegionName = "Women's Wear"
                         });
                 });
@@ -388,6 +388,14 @@ namespace DiscountNotifierAPI.Migrations
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("DiscountNotifierAPI.Models.Region", "AssociatedRegion")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AssociatedRegion");
 
                     b.Navigation("Manufacturer");
                 });
@@ -401,17 +409,6 @@ namespace DiscountNotifierAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("AssociatedBeacon");
-                });
-
-            modelBuilder.Entity("DiscountNotifierAPI.Models.Region", b =>
-                {
-                    b.HasOne("DiscountNotifierAPI.Models.Beacon", "Beacon")
-                        .WithMany()
-                        .HasForeignKey("BeaconId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Beacon");
                 });
 #pragma warning restore 612, 618
         }
