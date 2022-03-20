@@ -10,7 +10,7 @@ namespace DiscountNotifierAPI.Repositories
     {
         Task<IEnumerable<Discount>> GetDiscounts();
         Task<Discount> GetDiscount(int discountId);
-        Task<IEnumerable<Discount>> GetDiscountsByBeacon(int beaconId);
+        Task<IEnumerable<Discount>> GetDiscountsByBeacon(string beaconId);
     }
 
     public class DiscountsRepository : IDiscountRepository
@@ -35,7 +35,7 @@ namespace DiscountNotifierAPI.Repositories
                                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Discount>> GetDiscountsByBeacon(int beaconId)
+        public async Task<IEnumerable<Discount>> GetDiscountsByBeacon(string beaconId)
         {
             return await _appDbContext.Discounts
                                     .Where(d => string.Equals(d.BeaconId,beaconId))
