@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DiscountNotifierAPI.Models;
@@ -38,7 +39,7 @@ namespace DiscountNotifierAPI.Repositories
         public async Task<IEnumerable<Discount>> GetDiscountsByBeacon(string beaconId)
         {
             return await _appDbContext.Discounts
-                                    .Where(d => string.Equals(d.BeaconId,beaconId))
+                                    .Where(d => String.Equals(d.BeaconId,beaconId))
                                     .Include(d => d.AssociatedBeacon.AssociatedRegion)
                                     .Include(d => d.AssociatedBeacon.Manufacturer)
                                     .ToListAsync();

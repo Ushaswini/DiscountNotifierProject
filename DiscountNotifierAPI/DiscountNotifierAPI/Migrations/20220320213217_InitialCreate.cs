@@ -143,137 +143,137 @@ namespace DiscountNotifierAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB", 2, 1 });
+                values: new object[] { "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb", 2, 1 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "29BBD088-7DA0-400E-A8DD-60E0150C2D88", 2, 2 });
+                values: new object[] { "29bbd088-7da0-400e-a8dd-60e0150c2d88", 2, 2 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "F281620A-3535-4CBB-8AF1-876C25A4D558", 1, 3 });
+                values: new object[] { "f281620a-3535-4cbb-8af1-876c25a4d558", 1, 3 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "915BA882-EF04-4366-BB16-A75C86123F43", 1, 4 });
+                values: new object[] { "915ba882-ef04-4366-bb16-a75c86123f43", 1, 4 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "4A4BB6F2-9D48-420F-90D4-99D3438EFE27", 3, 5 });
+                values: new object[] { "4a4bb6f2-9d48-420f-90d4-99d3438efe27", 3, 5 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "42866756-090B-4AFF-9D0D-F76BA5E92DE7", 3, 6 });
+                values: new object[] { "42866756-090b-4aff-9d0d-f76ba5e92de7", 3, 6 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "55C1F308-9E48-4BD2-829B-9C000FF010BC", 4, 7 });
+                values: new object[] { "55c1f308-9e48-4bd2-829b-9c000ff010bc", 4, 7 });
 
             migrationBuilder.InsertData(
                 table: "Beacons",
                 columns: new[] { "BeaconId", "ManufacturerId", "RegionId" },
-                values: new object[] { "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3", 4, 8 });
+                values: new object[] { "eddb2708-10b0-4af7-9dd1-b85f6316ede3", 4, 8 });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 7, "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB", 7m, "", "Croissants", "12" });
+                values: new object[] { 7, "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb", 7m, "", "Croissants", "12" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 15, "55C1F308-9E48-4BD2-829B-9C000FF010BC", 15m, "", "Organix Conditioner", "25" });
+                values: new object[] { 15, "55c1f308-9e48-4bd2-829b-9c000ff010bc", 15m, "", "Organix Conditioner", "25" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 14, "55C1F308-9E48-4BD2-829B-9C000FF010BC", 9m, "", "Scotch Bite sponges", "13" });
+                values: new object[] { 14, "55c1f308-9e48-4bd2-829b-9c000ff010bc", 9m, "", "Scotch Bite sponges", "13" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 13, "42866756-090B-4AFF-9D0D-F76BA5E92DE7", 16m, "", "Dial soap", "25" });
+                values: new object[] { 13, "42866756-090b-4aff-9d0d-f76ba5e92de7", 16m, "", "Dial soap", "25" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 12, "42866756-090B-4AFF-9D0D-F76BA5E92DE7", 15m, "", "Hi-c Fruit punch", "13" });
+                values: new object[] { 12, "42866756-090b-4aff-9d0d-f76ba5e92de7", 15m, "", "Hi-c Fruit punch", "13" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 10, "4A4BB6F2-9D48-420F-90D4-99D3438EFE27", 20m, "", "Cranberry cocktail", "21" });
+                values: new object[] { 10, "4a4bb6f2-9d48-420f-90d4-99d3438efe27", 20m, "", "Cranberry cocktail", "21" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 19, "915BA882-EF04-4366-BB16-A75C86123F43", 10m, "", "Head phones", "120" });
+                values: new object[] { 19, "915ba882-ef04-4366-bb16-a75c86123f43", 10m, "", "Head phones", "120" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 18, "915BA882-EF04-4366-BB16-A75C86123F43", 25m, "", "Laptop", "250" });
+                values: new object[] { 18, "915ba882-ef04-4366-bb16-a75c86123f43", 25m, "", "Laptop", "250" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 16, "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3", 3m, "", "US Weekly", "2" });
+                values: new object[] { 16, "eddb2708-10b0-4af7-9dd1-b85f6316ede3", 3m, "", "Pyjamas", "2" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 6, "F281620A-3535-4CBB-8AF1-876C25A4D558", 5m, "", "Fresh seedless whole watermelon", "11" });
+                values: new object[] { 6, "f281620a-3535-4cbb-8af1-876c25a4d558", 5m, "", "Fresh seedless whole watermelon", "11" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 4, "F281620A-3535-4CBB-8AF1-876C25A4D558", 8m, "", "Spinach", "7" });
+                values: new object[] { 4, "f281620a-3535-4cbb-8af1-876c25a4d558", 8m, "", "Spinach", "7" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 3, "F281620A-3535-4CBB-8AF1-876C25A4D558", 12m, "", "Fresh express letuce", "4" });
+                values: new object[] { 3, "f281620a-3535-4cbb-8af1-876c25a4d558", 12m, "", "Fresh express letuce", "4" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 2, "F281620A-3535-4CBB-8AF1-876C25A4D558", 6m, "", "Oranges", "9" });
+                values: new object[] { 2, "f281620a-3535-4cbb-8af1-876c25a4d558", 6m, "", "Oranges", "9" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 1, "F281620A-3535-4CBB-8AF1-876C25A4D558", 12m, "", "Pineapple", "6" });
+                values: new object[] { 1, "f281620a-3535-4cbb-8af1-876c25a4d558", 12m, "", "Pineapple", "6" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 11, "29BBD088-7DA0-400E-A8DD-60E0150C2D88", 7m, "", "Milk", "10" });
+                values: new object[] { 11, "29bbd088-7da0-400e-a8dd-60e0150c2d88", 7m, "", "Milk", "10" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 9, "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB", 8m, "", "Gastorade", "22" });
+                values: new object[] { 9, "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb", 8m, "", "Gastorade", "22" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 8, "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB", 4m, "", "Brach's Jelly beans", "20" });
+                values: new object[] { 8, "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb", 4m, "", "Brach's Jelly beans", "20" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 5, "F281620A-3535-4CBB-8AF1-876C25A4D558", 2m, "", "Nectarines", "12" });
+                values: new object[] { 5, "f281620a-3535-4cbb-8af1-876c25a4d558", 2m, "", "Nectarines", "12" });
 
             migrationBuilder.InsertData(
                 table: "Discounts",
                 columns: new[] { "Id", "BeaconId", "DiscountPercentage", "ImageUrl", "OfferText", "OriginalPrice" },
-                values: new object[] { 17, "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3", 12m, "", "Cococola", "13" });
+                values: new object[] { 17, "eddb2708-10b0-4af7-9dd1-b85f6316ede3", 12m, "", "Makeup", "13" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Beacons_ManufacturerId",

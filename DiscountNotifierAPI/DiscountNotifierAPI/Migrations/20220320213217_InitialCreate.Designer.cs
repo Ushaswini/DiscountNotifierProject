@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountNotifierAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220320191806_InitialCreate")]
+    [Migration("20220320213217_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,49 +39,49 @@ namespace DiscountNotifierAPI.Migrations
                     b.HasData(
                         new
                         {
-                            BeaconId = "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB",
+                            BeaconId = "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb",
                             ManufacturerId = 2,
                             RegionId = 1
                         },
                         new
                         {
-                            BeaconId = "29BBD088-7DA0-400E-A8DD-60E0150C2D88",
+                            BeaconId = "29bbd088-7da0-400e-a8dd-60e0150c2d88",
                             ManufacturerId = 2,
                             RegionId = 2
                         },
                         new
                         {
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             ManufacturerId = 1,
                             RegionId = 3
                         },
                         new
                         {
-                            BeaconId = "915BA882-EF04-4366-BB16-A75C86123F43",
+                            BeaconId = "915ba882-ef04-4366-bb16-a75c86123f43",
                             ManufacturerId = 1,
                             RegionId = 4
                         },
                         new
                         {
-                            BeaconId = "4A4BB6F2-9D48-420F-90D4-99D3438EFE27",
+                            BeaconId = "4a4bb6f2-9d48-420f-90d4-99d3438efe27",
                             ManufacturerId = 3,
                             RegionId = 5
                         },
                         new
                         {
-                            BeaconId = "42866756-090B-4AFF-9D0D-F76BA5E92DE7",
+                            BeaconId = "42866756-090b-4aff-9d0d-f76ba5e92de7",
                             ManufacturerId = 3,
                             RegionId = 6
                         },
                         new
                         {
-                            BeaconId = "55C1F308-9E48-4BD2-829B-9C000FF010BC",
+                            BeaconId = "55c1f308-9e48-4bd2-829b-9c000ff010bc",
                             ManufacturerId = 4,
                             RegionId = 7
                         },
                         new
                         {
-                            BeaconId = "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3",
+                            BeaconId = "eddb2708-10b0-4af7-9dd1-b85f6316ede3",
                             ManufacturerId = 4,
                             RegionId = 8
                         });
@@ -118,7 +118,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 1,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 12m,
                             ImageUrl = "",
                             OfferText = "Pineapple",
@@ -127,7 +127,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 2,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 6m,
                             ImageUrl = "",
                             OfferText = "Oranges",
@@ -136,7 +136,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 3,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 12m,
                             ImageUrl = "",
                             OfferText = "Fresh express letuce",
@@ -145,7 +145,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 4,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 8m,
                             ImageUrl = "",
                             OfferText = "Spinach",
@@ -154,7 +154,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 5,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 2m,
                             ImageUrl = "",
                             OfferText = "Nectarines",
@@ -163,7 +163,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 6,
-                            BeaconId = "F281620A-3535-4CBB-8AF1-876C25A4D558",
+                            BeaconId = "f281620a-3535-4cbb-8af1-876c25a4d558",
                             DiscountPercentage = 5m,
                             ImageUrl = "",
                             OfferText = "Fresh seedless whole watermelon",
@@ -172,7 +172,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 7,
-                            BeaconId = "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB",
+                            BeaconId = "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb",
                             DiscountPercentage = 7m,
                             ImageUrl = "",
                             OfferText = "Croissants",
@@ -181,7 +181,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 8,
-                            BeaconId = "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB",
+                            BeaconId = "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb",
                             DiscountPercentage = 4m,
                             ImageUrl = "",
                             OfferText = "Brach's Jelly beans",
@@ -190,7 +190,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 9,
-                            BeaconId = "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB",
+                            BeaconId = "adb4f7b6-03db-4e4d-a5c4-06bf06ed73fb",
                             DiscountPercentage = 8m,
                             ImageUrl = "",
                             OfferText = "Gastorade",
@@ -199,7 +199,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 10,
-                            BeaconId = "4A4BB6F2-9D48-420F-90D4-99D3438EFE27",
+                            BeaconId = "4a4bb6f2-9d48-420f-90d4-99d3438efe27",
                             DiscountPercentage = 20m,
                             ImageUrl = "",
                             OfferText = "Cranberry cocktail",
@@ -208,7 +208,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 11,
-                            BeaconId = "29BBD088-7DA0-400E-A8DD-60E0150C2D88",
+                            BeaconId = "29bbd088-7da0-400e-a8dd-60e0150c2d88",
                             DiscountPercentage = 7m,
                             ImageUrl = "",
                             OfferText = "Milk",
@@ -217,7 +217,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 12,
-                            BeaconId = "42866756-090B-4AFF-9D0D-F76BA5E92DE7",
+                            BeaconId = "42866756-090b-4aff-9d0d-f76ba5e92de7",
                             DiscountPercentage = 15m,
                             ImageUrl = "",
                             OfferText = "Hi-c Fruit punch",
@@ -226,7 +226,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 13,
-                            BeaconId = "42866756-090B-4AFF-9D0D-F76BA5E92DE7",
+                            BeaconId = "42866756-090b-4aff-9d0d-f76ba5e92de7",
                             DiscountPercentage = 16m,
                             ImageUrl = "",
                             OfferText = "Dial soap",
@@ -235,7 +235,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 14,
-                            BeaconId = "55C1F308-9E48-4BD2-829B-9C000FF010BC",
+                            BeaconId = "55c1f308-9e48-4bd2-829b-9c000ff010bc",
                             DiscountPercentage = 9m,
                             ImageUrl = "",
                             OfferText = "Scotch Bite sponges",
@@ -244,7 +244,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 15,
-                            BeaconId = "55C1F308-9E48-4BD2-829B-9C000FF010BC",
+                            BeaconId = "55c1f308-9e48-4bd2-829b-9c000ff010bc",
                             DiscountPercentage = 15m,
                             ImageUrl = "",
                             OfferText = "Organix Conditioner",
@@ -253,25 +253,25 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 16,
-                            BeaconId = "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3",
+                            BeaconId = "eddb2708-10b0-4af7-9dd1-b85f6316ede3",
                             DiscountPercentage = 3m,
                             ImageUrl = "",
-                            OfferText = "US Weekly",
+                            OfferText = "Pyjamas",
                             OriginalPrice = "2"
                         },
                         new
                         {
                             Id = 17,
-                            BeaconId = "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3",
+                            BeaconId = "eddb2708-10b0-4af7-9dd1-b85f6316ede3",
                             DiscountPercentage = 12m,
                             ImageUrl = "",
-                            OfferText = "Cococola",
+                            OfferText = "Makeup",
                             OriginalPrice = "13"
                         },
                         new
                         {
                             Id = 18,
-                            BeaconId = "915BA882-EF04-4366-BB16-A75C86123F43",
+                            BeaconId = "915ba882-ef04-4366-bb16-a75c86123f43",
                             DiscountPercentage = 25m,
                             ImageUrl = "",
                             OfferText = "Laptop",
@@ -280,7 +280,7 @@ namespace DiscountNotifierAPI.Migrations
                         new
                         {
                             Id = 19,
-                            BeaconId = "915BA882-EF04-4366-BB16-A75C86123F43",
+                            BeaconId = "915ba882-ef04-4366-bb16-a75c86123f43",
                             DiscountPercentage = 10m,
                             ImageUrl = "",
                             OfferText = "Head phones",
