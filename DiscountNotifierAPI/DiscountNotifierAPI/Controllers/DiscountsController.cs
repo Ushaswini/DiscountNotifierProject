@@ -68,7 +68,7 @@ namespace DiscountNotifierAPI.Controllers
         /// <param name="beaconId"></param>
         /// <returns>List of discounts</returns>
         [HttpGet]
-        [Route("beaconId:{string}")]
+        [Route("{beaconId}")]
         public async Task<ActionResult>GetDiscounts(string beaconId)
         {
             try
