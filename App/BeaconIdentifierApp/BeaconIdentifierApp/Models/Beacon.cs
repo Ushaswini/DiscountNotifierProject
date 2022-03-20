@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DiscountNotifierAPI.Models
+namespace BeaconIdentifierApp.Models
 {
     public class Beacon
     {
