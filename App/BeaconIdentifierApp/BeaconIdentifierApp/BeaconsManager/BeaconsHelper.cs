@@ -12,7 +12,6 @@ namespace BeaconIdentifierApp.BeaconsManager
     {
         public async Task<List<string>> GetBeaconsIds()
         {
-            //return new List<string>() { "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB" };
             try
             {
                 using var client = new HttpClient();
@@ -49,7 +48,7 @@ namespace BeaconIdentifierApp.BeaconsManager
             {
                 using var client = new HttpClient();
                 var data = await client.GetStringAsync(ApiEndpoints.GetDiscounts);
-                return JsonConvert.DeserializeObject<List<Discount>>(data);
+                return JsonConvert.DeserializeObject<List<Discount>>(data).OrderBy(d => d.AssociatedBeacon.AssociatedRegion.RegionId).ToList();
             }
             catch (Exception ex)
             {

@@ -12,6 +12,9 @@ using BeaconIdentifierApp.Adapter;
 using BeaconIdentifierApp.Models;
 using Android.Widget;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
+using AndroidX.RecyclerView.Widget;
 
 namespace BeaconIdentifierApp
 {
@@ -24,7 +27,9 @@ namespace BeaconIdentifierApp
         private List<string> _beaconIds;
         private DiscountsAdapter _adapter;
         private List<Discount> _discounts;
-        private ListView lv;
+        private RecyclerView _discountsRv;
+        private EstimoteSdk.Recognition.Packets.Beacon _currentBeacon;
+        DateTime _lastActiveTime;
 
         const string BeaconId = "com.refractored";
 
@@ -35,10 +40,13 @@ namespace BeaconIdentifierApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            lv = FindViewById<ListView>(Resource.Id.listView);
+            _discountsRv = FindViewById<RecyclerView>(Resource.Id.discountsListView);
             _discounts = new List<Discount>();
-            _adapter = new DiscountsAdapter(this, _discounts);
-            lv.Adapter = _adapter;
+            _adapter = new DiscountsAdapter(_discounts);
+            _discountsRv.SetLayoutManager(new LinearLayoutManager(this));
+            _discountsRv.SetAdapter(_adapter);
+
+            PullData();
 
             _beaconsHelper = new BeaconsHelper();
             _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
@@ -50,19 +58,26 @@ namespace BeaconIdentifierApp
 
                     RunOnUiThread(() => {
                         _beaconManager = new BeaconManager(this);
+                        _beaconManager.SetForegroundScanPeriod(150, 12000);
                         _beaconManager.BeaconRanging += BeaconRanging;
-                        _beaconManager.SetForegroundScanPeriod(150, 2000);
+                        _beaconManager.BeaconExitedRegion += BeaconExitedRegion;    
                         _beaconManager.Connect(this);
                     });
                    
                 }
                 catch (System.Exception ex)
                 {
-
+                    Log.Debug(nameof(MainActivity), ex.Message);
                 }
                
 
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
+        }
+
+        private async void BeaconExitedRegion(object sender, BeaconManager.BeaconExitedRegionEventArgs e)
+        {
+            _currentBeacon = null;
+            await PullData();
         }
 
         private async void BeaconRanging(object sender, BeaconManager.BeaconRangingEventArgs e)
@@ -75,36 +90,40 @@ namespace BeaconIdentifierApp
 
                     if (proximity != Proximity.Unknown)
                     {
+                        _lastActiveTime = DateTime.Now;
                         var accuracy = EstimoteSdk.Observation.Region.RegionUtils.ComputeAccuracy(beacon);
                         if (accuracy < .06)
                             continue;
                         else
                         {
                             //Get region data
-                            Log.Debug("demo", beacon.ProximityUUID.ToString());
-                            var discounts = await _beaconsHelper.GetDiscountsForABeaconRegion(beacon.ProximityUUID.ToString());
-                            RunOnUiThread(() => {
-                                _adapter.UpdateData(discounts);
-                            });
+                            Log.Debug(nameof(MainActivity), beacon.ProximityUUID.ToString());
+
+                            if(_currentBeacon?.ProximityUUID != beacon.ProximityUUID)
+                            {
+                                //Pull data only if it's a new beacon region
+                                _currentBeacon = beacon;
+                                await PullData(beacon.ProximityUUID.ToString());
+                            }
                         }
-                            
                     }
                 }
             }
             else
             {
-                var discounts = await _beaconsHelper.GetDiscounts();
-                RunOnUiThread(() => {
-                    _adapter.UpdateData(discounts);
-                });
+                if ((DateTime.Now - _lastActiveTime).TotalMinutes > 2)
+                {
+                    _currentBeacon = null;
+                    await PullData();
+                    _lastActiveTime = DateTime.Now;
+                }
             }
-            
         }
 
         protected override void OnPause()
         {
             base.OnPause();
-            _beaconManager.Disconnect();
+            _beaconManager?.Disconnect();
         }
 
         public void OnServiceReady()
@@ -112,10 +131,30 @@ namespace BeaconIdentifierApp
             for(int i = 0; i< _beaconIds.Count;i++ )
             {
                 _regions[i] = new BeaconRegion(BeaconId, _beaconIds[i]);
-                _beaconManager.StartRanging(_regions[i]);
+                _beaconManager?.StartRanging(_regions[i]);
             }
         }
 
+        private async Task PullData(string filter = default)
+        {
+            List<Discount> discounts;
+            if(!string.IsNullOrEmpty(filter))
+            {
+                discounts = await _beaconsHelper.GetDiscountsForABeaconRegion(filter);
+            }
+            else
+            {
+                discounts = await _beaconsHelper.GetDiscounts();
+            }
+
+            if(discounts.Any())
+            {
+                _discounts = discounts;
+                RunOnUiThread(() => {
+                    _adapter.UpdateData(_discounts);
+                });
+            }
+        }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

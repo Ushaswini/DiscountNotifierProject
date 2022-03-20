@@ -3,82 +3,69 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Views;
 using Android.Widget;
+using AndroidX.RecyclerView.Widget;
 using BeaconIdentifierApp.Models;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace BeaconIdentifierApp.Adapter
 {
-    public class DiscountsAdapter : BaseAdapter<Discount>   
+    public class DiscountsAdapter : RecyclerView.Adapter 
     {
-        protected Activity Context = null;
         protected List<Discount> Discounts; 
 
-        public DiscountsAdapter(Activity context, List<Discount> discounts) : base()
+        public DiscountsAdapter(List<Discount> discounts) : base()
         {
-            this.Context = context;
+            if (discounts == null)
+                discounts = new List<Discount>();
             this.Discounts = discounts;
         }
 
-
-        public override long GetItemId(int position)    
-        {
-            return position;
-        }
-
-        public override int Count
-        {
-            get
-            {
-                return Discounts.Count;
-            }
-        }
-
-        public override Discount this[int index]
-        {
-            get { return Discounts[index]; }
-        }
-
-        public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            ProductViewHolder holder = null;
-            var view = convertView;
-
-            if (view == null)
-            {
-                view = Context.LayoutInflater.Inflate(Resource.Layout.discount_row, parent, false);
-
-                holder = new ProductViewHolder();
-                holder.Name = (TextView)view.FindViewById(Resource.Id.tv_name);
-                holder.Price = (TextView)view.FindViewById(Resource.Id.tv_price);
-                holder.Region = (TextView)view.FindViewById(Resource.Id.tv_region);
-                holder.Discount = (TextView)view.FindViewById(Resource.Id.tv_discount);
-                view.Tag = holder;
-            }
-            else
-            {
-                holder = view.Tag as ProductViewHolder;
-            }
-
-            var item = Discounts[position];
-            holder.Name.Text = item.OfferText;
-            holder.Discount.Text = $"Discount:{item.DiscountPercentage}%";
-            holder.Price.Text = string.Format("Original Price: {0:C}", item.OriginalPrice) + "$";
-            holder.Region.Text = item.AssociatedBeacon.AssociatedRegion.RegionName;
-            return view;
-        }
-
-        private class ProductViewHolder : Java.Lang.Object
-        {
-            public TextView Name { get; set; }
-            public TextView Price { get; set; }
-            public TextView Discount { get; set; }
-            public TextView Region { get; set; }
-        }
+        public override int ItemCount => Discounts.Count;
 
         public void UpdateData(List<Discount> discounts)
         {
+            if (discounts == null)
+                return;
+
             Discounts.Clear();
-            Discounts.AddRange(discounts);  
-            this.NotifyDataSetChanged();
+            Discounts.AddRange(discounts);
+            NotifyDataSetChanged();
         }
+
+        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        {
+            if(holder is ProductViewHolder productvh)
+            {
+                var item = Discounts[position];
+                productvh.Name.Text = item.OfferText;
+                productvh.Discount.Text = $"Discount:{item.DiscountPercentage}%";
+                productvh.Price.Text = string.Format("Original Price: {0:C}", item.OriginalPrice) + "$";
+                productvh.Region.Text = item.AssociatedBeacon.AssociatedRegion.RegionName;
+            }
+
+        }
+
+        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.discount_row, parent, false);
+            ProductViewHolder vh = new ProductViewHolder(itemView);
+            return vh;
+        }
+    }
+
+    public class ProductViewHolder : ViewHolder
+    {
+        public ProductViewHolder(View itemView) : base(itemView)
+        {
+            Name = itemView.FindViewById<TextView>(Resource.Id.tv_name);
+            Price = itemView.FindViewById<TextView>(Resource.Id.tv_price);
+            Discount = itemView.FindViewById<TextView>(Resource.Id.tv_discount);
+            Region = itemView.FindViewById<TextView>(Resource.Id.tv_region);
+
+        }
+        public TextView Name { get; set; }
+        public TextView Price { get; set; }
+        public TextView Discount { get; set; }
+        public TextView Region { get; set; }
     }
 }

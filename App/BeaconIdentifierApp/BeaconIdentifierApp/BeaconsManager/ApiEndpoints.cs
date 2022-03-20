@@ -7,9 +7,6 @@ namespace BeaconIdentifierApp.BeaconsManager
         public static string GetRegions => $"{HostEndpoint}/api/Regions";
         public static string GetBeacons => $"{HostEndpoint}/api/Beacons";
         public static string GetDiscounts => $"{HostEndpoint}/api/Discounts";
-        public static string GetDiscountsByBeaconRegion => $"{HostEndpoint}/api/Discounts/beaconId={0}";
-
-
-
+        public static string GetDiscountsByBeaconRegion => $"{HostEndpoint}/api/Discounts/{{0}}";
     }
 }
