@@ -38,7 +38,7 @@ namespace DiscountNotifierAPI.Repositories
         public async Task<IEnumerable<Discount>> GetDiscountsByBeacon(int beaconId)
         {
             return await _appDbContext.Discounts
-                                    .Where(d => d.BeaconId == beaconId)
+                                    .Where(d => string.Equals(d.BeaconId,beaconId))
                                     .Include(d => d.AssociatedBeacon.AssociatedRegion)
                                     .Include(d => d.AssociatedBeacon.Manufacturer)
                                     .ToListAsync();

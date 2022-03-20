@@ -9,7 +9,7 @@ namespace DiscountNotifierAPI.Models
         public string OriginalPrice { get; set; }
         public string ImageUrl { get; set; }
 
-        public int BeaconId { get; set; }
+        public string BeaconId { get; set; }
         public Beacon AssociatedBeacon { get; set; }
     }
 }

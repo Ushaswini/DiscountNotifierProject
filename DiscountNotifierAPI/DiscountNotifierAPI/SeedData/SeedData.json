@@ -6,7 +6,7 @@
       "OfferText": "Pineapple",
       "OriginalPrice": "6",
       "ImageUrl": "",
-      "BeaconId": 1
+      "BeaconId": "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB"
     },
     {
       "Id": 2,
@@ -14,7 +14,7 @@
       "OfferText": "Oranges",
       "OriginalPrice": "9",
       "ImageUrl": "",
-      "BeaconId": 1
+      "BeaconId": "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB"
     },
     {
       "Id": 3,
@@ -22,7 +22,7 @@
       "OfferText": "Fresh express letuce",
       "OriginalPrice": "4",
       "ImageUrl": "",
-      "BeaconId": 2
+      "BeaconId": "29BBD088-7DA0-400E-A8DD-60E0150C2D88"
     },
     {
       "Id": 4,
@@ -30,7 +30,7 @@
       "OfferText": "Spinach",
       "OriginalPrice": "7",
       "ImageUrl": "",
-      "BeaconId": 2
+      "BeaconId": "29BBD088-7DA0-400E-A8DD-60E0150C2D88"
     },
     {
       "Id": 5,
@@ -38,7 +38,7 @@
       "OfferText": "Nectarines",
       "OriginalPrice": "12",
       "ImageUrl": "",
-      "BeaconId": 3
+      "BeaconId": "F281620A-3535-4CBB-8AF1-876C25A4D558"
     },
     {
       "Id": 6,
@@ -46,7 +46,7 @@
       "OfferText": "Fresh seedless whole watermelon",
       "OriginalPrice": "11",
       "ImageUrl": "",
-      "BeaconId": 3
+      "BeaconId": "F281620A-3535-4CBB-8AF1-876C25A4D558"
     },
     {
       "Id": 7,
@@ -54,7 +54,7 @@
       "OfferText": "Croissants",
       "OriginalPrice": "12",
       "ImageUrl": "",
-      "BeaconId": 3
+      "BeaconId": "F281620A-3535-4CBB-8AF1-876C25A4D558"
     },
     {
       "Id": 8,
@@ -62,7 +62,7 @@
       "OfferText": "Brach's Jelly beans",
       "OriginalPrice": "20",
       "ImageUrl": "",
-      "BeaconId": 4
+      "BeaconId": "915BA882-EF04-4366-BB16-A75C86123F43"
     },
     {
       "Id": 9,
@@ -70,7 +70,7 @@
       "OfferText": "Gastorade",
       "OriginalPrice": "22",
       "ImageUrl": "",
-      "BeaconId": 4
+      "BeaconId": "915BA882-EF04-4366-BB16-A75C86123F43"
     },
     {
       "Id": 10,
@@ -78,7 +78,7 @@
       "OfferText": "Cranberry cocktail",
       "OriginalPrice": "21",
       "ImageUrl": "",
-      "BeaconId": 5
+      "BeaconId": "4A4BB6F2-9D48-420F-90D4-99D3438EFE27"
     },
     {
       "Id": 11,
@@ -86,7 +86,7 @@
       "OfferText": "Milk",
       "OriginalPrice": "10",
       "ImageUrl": "",
-      "BeaconId": 5
+      "BeaconId": "4A4BB6F2-9D48-420F-90D4-99D3438EFE27"
     },
     {
       "Id": 12,
@@ -94,7 +94,7 @@
       "OfferText": "Hi-c Fruit punch",
       "OriginalPrice": "13",
       "ImageUrl": "",
-      "BeaconId": 6
+      "BeaconId": "42866756-090B-4AFF-9D0D-F76BA5E92DE7"
     },
     {
       "Id": 13,
@@ -102,7 +102,7 @@
       "OfferText": "Dial soap",
       "OriginalPrice": "25",
       "ImageUrl": "",
-      "BeaconId": 6
+      "BeaconId": "42866756-090B-4AFF-9D0D-F76BA5E92DE7"
     },
     {
       "Id": 14,
@@ -110,7 +110,7 @@
       "OfferText": "Scotch Bite sponges",
       "OriginalPrice": "13",
       "ImageUrl": "",
-      "BeaconId": 7
+      "BeaconId": "55C1F308-9E48-4BD2-829B-9C000FF010BC"
     },
     {
       "Id": 15,
@@ -118,7 +118,7 @@
       "OfferText": "Organix Conditioner",
       "OriginalPrice": "25",
       "ImageUrl": "",
-      "BeaconId": 7
+      "BeaconId": "55C1F308-9E48-4BD2-829B-9C000FF010BC"
     },
     {
       "Id": 16,
@@ -126,7 +126,7 @@
       "OfferText": "US Weekly",
       "OriginalPrice": "2",
       "ImageUrl": "",
-      "BeaconId": 8
+      "BeaconId": "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3"
     },
     {
       "Id": 17,
@@ -134,7 +134,7 @@
       "OfferText": "Cococola",
       "OriginalPrice": "13",
       "ImageUrl": "",
-      "BeaconId": 8
+      "BeaconId": "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3"
     },
     {
       "Id": 18,
@@ -142,7 +142,7 @@
       "OfferText": "Laptop",
       "OriginalPrice": "250",
       "ImageUrl": "",
-      "BeaconId": 1
+      "BeaconId": "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB"
     },
     {
       "Id": 19,
@@ -150,7 +150,7 @@
       "OfferText": "Head phones",
       "OriginalPrice": "120",
       "ImageUrl": "",
-      "BeaconId": 1
+      "BeaconId": "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB"
     }
   ],
   "Regions": [
@@ -207,42 +207,42 @@
   ],
   "Beacons": [
     {
-      "BeaconId": 1,
+      "BeaconId": "ADB4F7B6-03DB-4E4D-A5C4-06BF06ED73FB",
       "ManufacturerId": 2,
       "RegionId": 1
     },
     {
-      "BeaconId": 2,
+      "BeaconId": "29BBD088-7DA0-400E-A8DD-60E0150C2D88",
       "ManufacturerId": 2,
       "RegionId": 2
     },
     {
-      "BeaconId": 3,
+      "BeaconId": "F281620A-3535-4CBB-8AF1-876C25A4D558",
       "ManufacturerId": 1,
       "RegionId": 3
     },
     {
-      "BeaconId": 4,
+      "BeaconId": "915BA882-EF04-4366-BB16-A75C86123F43",
       "ManufacturerId": 1,
       "RegionId": 4
     },
     {
-      "BeaconId": 5,
+      "BeaconId": "4A4BB6F2-9D48-420F-90D4-99D3438EFE27",
       "ManufacturerId": 3,
       "RegionId": 5
     },
     {
-      "BeaconId": 6,
+      "BeaconId": "42866756-090B-4AFF-9D0D-F76BA5E92DE7",
       "ManufacturerId": 3,
       "RegionId": 6
     },
     {
-      "BeaconId": 7,
+      "BeaconId": "55C1F308-9E48-4BD2-829B-9C000FF010BC",
       "ManufacturerId": 4,
       "RegionId": 7
     },
     {
-      "BeaconId": 8,
+      "BeaconId": "EDDB2708-10B0-4AF7-9DD1-B85F6316EDE3",
       "ManufacturerId": 4,
       "RegionId": 8
     }

@@ -36,6 +36,8 @@ namespace DiscountNotifierAPI
 
             services.AddScoped<IDiscountRepository, DiscountsRepository>();
             services.AddScoped<IRegionsRepository, RegionsRepository>();
+            services.AddScoped<IBeaconsRepository, BeaconsRepository>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(options =>
