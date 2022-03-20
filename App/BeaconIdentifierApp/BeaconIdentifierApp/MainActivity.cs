@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using BeaconIdentifierApp.Adapter;
 using BeaconIdentifierApp.Models;
 using Android.Widget;
+using System.Threading.Tasks;
 
 namespace BeaconIdentifierApp
 {
@@ -27,7 +28,7 @@ namespace BeaconIdentifierApp
 
         const string BeaconId = "com.refractored";
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -40,13 +41,28 @@ namespace BeaconIdentifierApp
             lv.Adapter = _adapter;
 
             _beaconsHelper = new BeaconsHelper();
-            _beaconIds = await _beaconsHelper.GetBeaconsIds();
-            _regions = new BeaconRegion[_beaconIds.Count];
+            _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
+            {
+                try
+                {
+                    _beaconIds = result.Result;
+                    _regions = new BeaconRegion[_beaconIds.Count];
 
-            _beaconManager = new BeaconManager(this);
+                    RunOnUiThread(() => {
+                        _beaconManager = new BeaconManager(this);
+                        _beaconManager.BeaconRanging += BeaconRanging;
+                        _beaconManager.SetForegroundScanPeriod(150, 2000);
+                        _beaconManager.Connect(this);
+                    });
+                   
+                }
+                catch (System.Exception ex)
+                {
 
-            _beaconManager.BeaconRanging += BeaconRanging;
-            _beaconManager.SetForegroundScanPeriod(150, 2000);
+                }
+               
+
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
         private async void BeaconRanging(object sender, BeaconManager.BeaconRangingEventArgs e)
@@ -85,12 +101,6 @@ namespace BeaconIdentifierApp
             
         }
 
-        protected override void OnResume()
-        {
-            base.OnResume();
-            _beaconManager.Connect(this);
-        }
-
         protected override void OnPause()
         {
             base.OnPause();
@@ -112,7 +122,5 @@ namespace BeaconIdentifierApp
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        
     }
 }

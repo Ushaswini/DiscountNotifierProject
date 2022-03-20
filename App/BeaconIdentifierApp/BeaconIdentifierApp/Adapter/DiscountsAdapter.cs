@@ -60,8 +60,8 @@ namespace BeaconIdentifierApp.Adapter
 
             var item = Discounts[position];
             holder.Name.Text = item.OfferText;
-            holder.Discount.Text = item.DiscountPercentage + "%";
-            holder.Price.Text = String.Format("Original Price: {0:C}", item.OriginalPrice) + "$";
+            holder.Discount.Text = $"Discount:{item.DiscountPercentage}%";
+            holder.Price.Text = string.Format("Original Price: {0:C}", item.OriginalPrice) + "$";
             holder.Region.Text = item.AssociatedBeacon.AssociatedRegion.RegionName;
             return view;
         }
