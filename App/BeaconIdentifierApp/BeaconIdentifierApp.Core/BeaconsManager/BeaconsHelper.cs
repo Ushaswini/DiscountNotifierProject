@@ -8,15 +8,15 @@ using Newtonsoft.Json;
 
 namespace BeaconIdentifierApp.Core.BeaconsManager
 {
-    public interface IDataHelper
+    public interface IDataService
     {
         public Task<List<string>> GetBeaconsIds();
         public Task<List<Discount>> GetDiscountsForABeaconRegion(string beaconId);
         public Task<List<Discount>> GetDiscounts();
     }
 
-
-    public class DataHelper : IDataHelper
+        
+    public class DataService : IDataService 
     {
         public async Task<List<string>> GetBeaconsIds() 
         {

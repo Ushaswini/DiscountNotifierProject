@@ -35,7 +35,7 @@ namespace BeaconIdentifierApp.Adapter
             NotifyDataSetChanged();
 
             //Show or Hide empty view
-            OnListChanged?.Invoke(this, discounts.Any());
+            OnListChanged?.Invoke(this, !discounts.Any());
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)

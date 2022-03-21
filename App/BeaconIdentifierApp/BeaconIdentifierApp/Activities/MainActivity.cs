@@ -23,7 +23,7 @@ namespace BeaconIdentifierApp.Activities
     public class MainActivity : BaseActivity, BeaconManager.IServiceReadyCallback
     {
         private BeaconManager _beaconManager;
-        private DataHelper _beaconsHelper;
+        private DataService _dataService;   
         private BeaconRegion[] _regions;
         private List<string> _beaconIds;
         private DiscountsAdapter _adapter;
@@ -52,9 +52,9 @@ namespace BeaconIdentifierApp.Activities
             _discountsRv.SetLayoutManager(new LinearLayoutManager(this));
             _discountsRv.SetAdapter(_adapter);
 
-            _beaconsHelper = new DataHelper();
+            _dataService = new DataService();
 
-            _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
+            _dataService.GetBeaconsIds().ContinueWith((result) =>
             {
                 try
                 {
@@ -162,11 +162,11 @@ namespace BeaconIdentifierApp.Activities
             List<Discount> discounts;
             if(!string.IsNullOrEmpty(filter))
             {
-                discounts = await _beaconsHelper.GetDiscountsForABeaconRegion(filter);
+                discounts = await _dataService.GetDiscountsForABeaconRegion(filter);
             }
             else
             {
-                discounts = await _beaconsHelper.GetDiscounts();
+                discounts = await _dataService.GetDiscounts();
             }
 
             if(discounts.Any())

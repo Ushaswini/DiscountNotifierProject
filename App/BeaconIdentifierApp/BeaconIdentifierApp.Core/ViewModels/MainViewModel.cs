@@ -8,9 +8,9 @@ namespace BeaconIdentifierApp.Core.ViewModels
 {
     public class MainViewModel
     {
-        private readonly IDataHelper _dataHelper;   
+        private readonly IDataService _dataHelper;   
 
-        public MainViewModel(IDataHelper dataHelper)
+        public MainViewModel(IDataService dataHelper)
         {
             this._dataHelper = dataHelper;
         }
