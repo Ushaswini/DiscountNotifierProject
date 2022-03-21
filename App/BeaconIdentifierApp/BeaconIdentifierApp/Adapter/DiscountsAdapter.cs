@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Views;
 using Android.Widget;
@@ -11,7 +12,9 @@ namespace BeaconIdentifierApp.Adapter
 {
     public class DiscountsAdapter : RecyclerView.Adapter 
     {
-        protected List<Discount> Discounts; 
+        protected List<Discount> Discounts;
+
+        public EventHandler<bool> OnListChanged;    
 
         public DiscountsAdapter(List<Discount> discounts) : base()
         {
@@ -30,6 +33,9 @@ namespace BeaconIdentifierApp.Adapter
             Discounts.Clear();
             Discounts.AddRange(discounts);
             NotifyDataSetChanged();
+
+            //Show or Hide empty view
+            OnListChanged?.Invoke(this, discounts.Any());
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -45,7 +51,7 @@ namespace BeaconIdentifierApp.Adapter
 
         }
 
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        public override ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             View itemView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.discount_row, parent, false);
             ProductViewHolder vh = new ProductViewHolder(itemView);

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using AndroidX.RecyclerView.Widget;
+using Android.Views;
 
 namespace BeaconIdentifierApp.Activities
 {
@@ -30,6 +31,7 @@ namespace BeaconIdentifierApp.Activities
         private RecyclerView _discountsRv;
         private EstimoteSdk.Recognition.Packets.Beacon _currentBeacon;
         DateTime _lastActiveTime;
+        private View _emptyView;
 
         const string BeaconId = "com.refractored";
 
@@ -40,19 +42,17 @@ namespace BeaconIdentifierApp.Activities
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
-            ShowProgress();
-
             _discountsRv = FindViewById<RecyclerView>(Resource.Id.discountsListView);
+            _emptyView = FindViewById<LinearLayout>(Resource.Id.emptyView);
+
             _discounts = new List<Discount>();
             _adapter = new DiscountsAdapter(_discounts);
+            _adapter.OnListChanged += OnListChanged;    
             _discountsRv.SetLayoutManager(new LinearLayoutManager(this));
             _discountsRv.SetAdapter(_adapter);
 
-            PullData().ContinueWith((result) => {
-                DismissProgress();
-            });
-
             _beaconsHelper = new BeaconsHelper();
+
             _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
             {
                 try
@@ -77,7 +77,14 @@ namespace BeaconIdentifierApp.Activities
 
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
 
-           
+            PullData();
+
+        }
+
+        private void OnListChanged(object sender, bool show)
+        {
+            DismissProgress();
+            ToggleEmptyView(show);
         }
 
         private async void BeaconExitedRegion(object sender, BeaconManager.BeaconExitedRegionEventArgs e)
@@ -164,6 +171,14 @@ namespace BeaconIdentifierApp.Activities
             }
 
             DismissProgress();
+        }
+
+        private void ToggleEmptyView(bool show)
+        {
+            if(_emptyView != null)
+            {
+                _emptyView.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

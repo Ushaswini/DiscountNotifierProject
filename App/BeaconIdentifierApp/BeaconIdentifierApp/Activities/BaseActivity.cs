@@ -16,16 +16,10 @@ namespace BeaconIdentifierApp.Activities
 {
     public class BaseActivity : AppCompatActivity
     {   
-        protected ProgressBar _progressDialog;
-
-        protected override void OnResume()
-        {
-            base.OnResume();
-            _progressDialog = FindViewById<ProgressBar>(Resource.Id.progressBar);
-        }
-
         protected virtual void ShowProgress()
         {
+            var _progressDialog = FindViewById<ProgressBar>(Resource.Id.progressBar);
+
             if ((_progressDialog == null) || (_progressDialog != null && _progressDialog.Visibility == ViewStates.Visible))
                 return;
 
@@ -37,6 +31,8 @@ namespace BeaconIdentifierApp.Activities
 
         protected virtual void DismissProgress()
         {
+            var _progressDialog = FindViewById<ProgressBar>(Resource.Id.progressBar);
+
             if ((_progressDialog == null) || (_progressDialog != null && _progressDialog.Visibility == ViewStates.Gone))
                 return;
 
