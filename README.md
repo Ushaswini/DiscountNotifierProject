@@ -5,7 +5,13 @@ This project holds API and mobile projects
 
 **Tech Notes:**
 
-* Utilized Beacon Simulator app to simulate beacons
+* ASP.NET Core to develop Web APIs which are hosted in Azure
+* Swashbuckle - an OpenAPI implementation to create documentation (Source - https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+* Estimote SDK - To establish communication with Beacons (Source - https://github.com/xamarin/XamarinComponents/tree/main/XPlat/Estimote/Android)
+* Beacon Simulator app to simulate beacons - To simulate beacons (Source https://apps.apple.com/us/app/beacon-simulator/id1380778696)
+* Xamarin.Android - A native app
+* GitHub - For source control and documentation
+* Visual Studio for Mac
 
 
 # Demo
