@@ -60,7 +60,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BeaconsManager\BeaconsHelper.cs" />
@@ -70,6 +69,8 @@
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\Discount.cs" />
     <Compile Include="Adapter\DiscountsAdapter.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\BaseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -115,6 +116,7 @@
     <Folder Include="BeaconsManager\" />
     <Folder Include="Models\" />
     <Folder Include="Adapter\" />
+    <Folder Include="Activities\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />

@@ -16,10 +16,10 @@ using System.Linq;
 using System;
 using AndroidX.RecyclerView.Widget;
 
-namespace BeaconIdentifierApp
+namespace BeaconIdentifierApp.Activities
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, BeaconManager.IServiceReadyCallback
+    public class MainActivity : BaseActivity, BeaconManager.IServiceReadyCallback
     {
         private BeaconManager _beaconManager;
         private BeaconsHelper _beaconsHelper;
@@ -40,13 +40,17 @@ namespace BeaconIdentifierApp
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
+            ShowProgress();
+
             _discountsRv = FindViewById<RecyclerView>(Resource.Id.discountsListView);
             _discounts = new List<Discount>();
             _adapter = new DiscountsAdapter(_discounts);
             _discountsRv.SetLayoutManager(new LinearLayoutManager(this));
             _discountsRv.SetAdapter(_adapter);
 
-            PullData();
+            PullData().ContinueWith((result) => {
+                DismissProgress();
+            });
 
             _beaconsHelper = new BeaconsHelper();
             _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
@@ -72,6 +76,8 @@ namespace BeaconIdentifierApp
                
 
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
+
+           
         }
 
         private async void BeaconExitedRegion(object sender, BeaconManager.BeaconExitedRegionEventArgs e)
@@ -137,6 +143,8 @@ namespace BeaconIdentifierApp
 
         private async Task PullData(string filter = default)
         {
+            ShowProgress();
+
             List<Discount> discounts;
             if(!string.IsNullOrEmpty(filter))
             {
@@ -154,6 +162,8 @@ namespace BeaconIdentifierApp
                     _adapter.UpdateData(_discounts);
                 });
             }
+
+            DismissProgress();
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
