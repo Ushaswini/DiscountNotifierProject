@@ -23,7 +23,7 @@ namespace BeaconIdentifierApp.Activities
     public class MainActivity : BaseActivity, BeaconManager.IServiceReadyCallback
     {
         private BeaconManager _beaconManager;
-        private BeaconsHelper _beaconsHelper;
+        private DataHelper _beaconsHelper;
         private BeaconRegion[] _regions;
         private List<string> _beaconIds;
         private DiscountsAdapter _adapter;
@@ -35,6 +35,7 @@ namespace BeaconIdentifierApp.Activities
 
         const string BeaconId = "com.refractored";
 
+        #region Lifecycle
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -51,7 +52,7 @@ namespace BeaconIdentifierApp.Activities
             _discountsRv.SetLayoutManager(new LinearLayoutManager(this));
             _discountsRv.SetAdapter(_adapter);
 
-            _beaconsHelper = new BeaconsHelper();
+            _beaconsHelper = new DataHelper();
 
             _beaconsHelper.GetBeaconsIds().ContinueWith((result) =>
             {
@@ -81,12 +82,22 @@ namespace BeaconIdentifierApp.Activities
 
         }
 
+        protected override void OnPause()
+        {
+            base.OnPause();
+            _beaconManager?.Disconnect();
+        }
+        #endregion
+
+        #region Events
         private void OnListChanged(object sender, bool show)
         {
             DismissProgress();
             ToggleEmptyView(show);
         }
+        #endregion
 
+        #region Beacons Related
         private async void BeaconExitedRegion(object sender, BeaconManager.BeaconExitedRegionEventArgs e)
         {
             _currentBeacon = null;
@@ -133,12 +144,6 @@ namespace BeaconIdentifierApp.Activities
             }
         }
 
-        protected override void OnPause()
-        {
-            base.OnPause();
-            _beaconManager?.Disconnect();
-        }
-
         public void OnServiceReady()
         {
             for(int i = 0; i< _beaconIds.Count;i++ )
@@ -147,7 +152,9 @@ namespace BeaconIdentifierApp.Activities
                 _beaconManager?.StartRanging(_regions[i]);
             }
         }
+        #endregion
 
+        #region Helper methods
         private async Task PullData(string filter = default)
         {
             ShowProgress();
@@ -180,6 +187,8 @@ namespace BeaconIdentifierApp.Activities
                 _emptyView.Visibility = show ? ViewStates.Visible : ViewStates.Gone;
             }
         }
+        #endregion
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
