@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BeaconIdentifierApp.Models
+namespace BeaconIdentifierApp.Core.Models
 {
     public class Beacon
     {

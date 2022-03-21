@@ -5,7 +5,7 @@ using Android.App;
 using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
-using BeaconIdentifierApp.Models;
+using BeaconIdentifierApp.Core.Models;
 using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 namespace BeaconIdentifierApp.Adapter

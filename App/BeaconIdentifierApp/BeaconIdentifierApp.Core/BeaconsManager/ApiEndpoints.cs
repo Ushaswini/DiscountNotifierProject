@@ -1,5 +1,5 @@
 ﻿using System;
-namespace BeaconIdentifierApp.BeaconsManager
+namespace BeaconIdentifierApp.Core.BeaconsManager
 {
     public static class ApiEndpoints
     {
